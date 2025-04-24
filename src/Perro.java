@@ -4,6 +4,7 @@ public class Perro {
     private String raza;
     private int edad;
     private String medida;
+    private boolean estado;
 
     public Perro(String placa, String nombre, String raza, int edad, String medida) {
         this.placa = placa;
@@ -11,9 +12,11 @@ public class Perro {
         this.raza = raza;
         this.edad = edad;
         this.medida = medida;
+        this.estado=true;
     }
 
     public Perro(){
+
 
     }
 
@@ -46,6 +49,7 @@ public class Perro {
     }
 
     public void setEdad(int edad) {
+
         this.edad = edad;
     }
 
@@ -56,6 +60,16 @@ public class Perro {
     public void setMedida(String medida) {
         this.medida = medida;
     }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+
+    }
+
 
     @Override
     public String toString() {

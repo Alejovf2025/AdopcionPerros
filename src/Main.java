@@ -8,6 +8,7 @@ public class Main {
         List<Persona> lstPersona = new ArrayList<>();
         List<Perro> lstPerro = new ArrayList<>();
 
+
         int opc;
         do{
         System.out.println("""
@@ -50,15 +51,15 @@ public class Main {
                 int edad;
                 String medida;
                 System.out.println("Ingrese placa del perro: ");
-                placa = teclado.nextLine();
+                placa = teclado.next();
                 System.out.println("Ingrese nombre del perro: ");
-                nombre = teclado.nextLine();
+                nombre = teclado.next();
                 System.out.println("Ingrese la raza del perro: ");
-                raza = teclado.nextLine();
+                raza = teclado.next();
                 System.out.println("Ingrese la edad del perro: ");
                 edad = teclado.nextInt();
-                System.out.println();
-                medida = teclado.nextLine();
+                System.out.println("Ingrese la medida del perro: ");
+                medida = teclado.next();
                 lstPerro.add(new Perro(placa,nombre,raza,edad,medida));
 
 
@@ -79,7 +80,10 @@ public class Main {
             case 4 ->{
                 for(Perro u : lstPerro){
                     if(u instanceof Perro){
-                        System.out.println(u);
+                        if(u.isEstado()){
+                            System.out.println(u);
+                        }
+
 
                     }
 
@@ -87,18 +91,54 @@ public class Main {
                 }
 
 
-            }
+
+
+                }
+
+
+
             case 5 ->{
+                String documento1;
+                String placa1;
+                System.out.println("Digite su documento: ");
+                documento1 = teclado.next();
+                System.out.println("Digite la placa del perro que desea adoptar: ");
+                placa1 = teclado.next();
+                for(Persona u : lstPersona){
+                    if(u.getDocumento().equalsIgnoreCase(documento1)){
+                        for(Perro e : lstPerro){
+                            if(e.getPlaca().equalsIgnoreCase(placa1)){
+                                u.adoptarPerro(e);
+                            }
+                        }
+
+
+                    }
+
+                }
+
+
 
             }
             case 6 ->{
+                String documento;
+                System.out.println("Digite su documento: ");
+                documento = teclado.next();
+                for(Persona u : lstPersona){
+                    if(u.getDocumento().equalsIgnoreCase(documento)){
+                        System.out.println(u.perroMasGrande());
+                    }
+                }
+
+
+
 
             }
             case 7 ->{
                 System.out.println("BAy");
             }
-        }
 
+        }
         }while(opc != 7);
     }
 }

@@ -7,6 +7,7 @@ public class Persona {
     private String apellido;
     private int edad;
     private String documento;
+    List<Perro> lstAdoptados = new ArrayList<>();
 
     public Persona(String nombre, String apellido, int edad, String documento) {
         this.nombre = nombre;
@@ -17,11 +18,25 @@ public class Persona {
 
 
     public void adoptarPerro(Perro perro){
+        if(lstAdoptados.size() < 3){
+            lstAdoptados.add(perro);
+            perro.setEstado(false);
+            System.out.println("Adopto a " + perro.getNombre());
+        }else{
+            System.out.println("Ya adopto al maximo de perros posibles");
+        }
 
     }
 
     public String perroMasGrande(){
-        return "";
+        Perro cachorroMasViejo = lstAdoptados.get(0);
+        for(Perro e : lstAdoptados){
+            if(e.getEdad() > cachorroMasViejo.getEdad()){
+                cachorroMasViejo = e;
+            }
+        }
+        return "El perro mas viejo es : " + cachorroMasViejo.getNombre();
+
     }
 
 
@@ -59,13 +74,28 @@ public class Persona {
         this.documento = documento;
     }
 
+    public List<Perro> getLstAdoptados() {
+        return lstAdoptados;
+    }
+
+    public void setLstAdoptados(List<Perro> lstAdoptados) {
+        this.lstAdoptados = lstAdoptados;
+    }
+
     @Override
     public String toString() {
+        String perros = " ";
+        for(Perro p : lstAdoptados){
+            perros = perros + p.getNombre() + " ,  ";
+
+
+        }
         return "Persona{" +
                 ", nombre='" + nombre + '\'' +
                 ", apellido='" + apellido + '\'' +
                 ", edad=" + edad +
                 ", documento='" + documento + '\'' +
+                ", perros adoptados=" + perros +
                 '}';
     }
 }
